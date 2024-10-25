@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My CV</title>
+    <link rel="stylesheet" href="/Assigment-labs/Assigment-labs/week3/css/stylee.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Elvir Pandur</h1>
+    </header>
+
+    
+    <nav>
+        <ul>
+            <li><a href="/Assigment-labs/Assigment-labs/week3/html/about.html">About Me</a></li>
+            <li><a href="/Assigment-labs/Assigment-labs/week3/html/experience.html">Experience</a></li>
+            <li><a href="/Assigment-labs/Assigment-labs/week3/html/skills.html">Skills</a></li>
+        </ul>
+    </nav>
+
+    
+    <main>
+        
+        <article id="experience">
+            <h2>Professional Experience</h2>
+            <p>
+                Hi, my name is Elvir Pandur. Im student of Informatical tehnologys at Burch University. Im born in 2004
+        I had found interest in music production, programming so as a singing. If you have any question, hit me up :D
+            </p>
+        </article>
+
+        
+        <section id="location">
+            <h2>Get My Location</h2>
+            <button id="getLocationBtn">Get My Location</button>
+            <p id="locationMessage"></p>
+        </section>
+    </main>
+
+    
+    <footer>
+        <p>Contact Information: elvir.pandur@stu.ibu.edu.ba | +1 234 567 890</p>
+        <p>© 2024 Elvir Pandur</p>
+    </footer>
+
+    <script>
+        
+        document.getElementById('getLocationBtn').addEventListener('click', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        document.getElementById('locationMessage').textContent = 
+                            `Latitude: ${latitude}, Longitude: ${longitude}`;
+                    },
+                    function(error) {
+                        switch (error.code) {
+                            case error.PERMISSION_DENIED:
+                                document.getElementById('locationMessage').textContent = 
+                                    "User denied the request for Geolocation.";
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                document.getElementById('locationMessage').textContent = 
+                                    "Location information is unavailable.";
+                                break;
+                            case error.TIMEOUT:
+                                document.getElementById('locationMessage').textContent = 
+                                    "The request to get user location timed out.";
+                                break;
+                            case error.UNKNOWN_ERROR:
+                                document.getElementById('locationMessage').textContent = 
+                                    "An unknown error occurred.";
+                                break;
+                        }
+                    }
+                );
+            } else {
+                document.getElementById('locationMessage').textContent = 
+                    "Geolocation is not supported by this browser.";
+            }
+        });
+    </script>
+</body>
+</html>
